@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Adriano</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&family=Cinzel:wght@700&display=swap">
+<style>
+
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  filter: blur(8px);
+  transition: filter 1s ease;
+}
+
+
+#bg-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: -1;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  overflow-x: hidden;
+}
+
+
+#enter-text {
+  font-family: 'Lobster', cursive;
+  font-size: 48px;
+  color: #00ffff;
+  text-shadow:
+    0 0 5px #00ffff,
+    0 0 10px #00ffff,
+    0 0 20px #00ffff;
+  cursor: pointer;
+  z-index: 5;
+  position: absolute;
+  animation: flicker 1.2s infinite alternate;
+}
+@keyframes flicker {
+  0%,19%,21%,23%,25%,54%,56%,100% { opacity:1; }
+  20%,22%,24%,55% { opacity:0.3; }
+}
+
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  margin-top: 50px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.profile-gif {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.18);
+  border: 2px solid rgba(255,255,255,0.12);
+  background: linear-gradient(135deg,#111,#171717);
+  transform: scale(0);
+  transition: transform 0.8s ease;
+}
+
+.intro-text {
+  font-family: 'Lobster', cursive;
+  font-size: 48px;
+  color: #fff;
+  text-shadow: 
+    0 0 4px #fff, 
+    0 0 8px #00ffff, 
+    0 0 12px #00ffff;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  border-right: 2px solid rgba(255,255,255,0.9);
+  box-sizing: content-box;
+  animation: typewriter 2s steps(7,end) infinite, blinkCursor 500ms step-end infinite;
+}
+
+@keyframes blinkCursor {
+  0% { border-color: rgba(255,255,255,0.9); }
+  50% { border-color: rgba(255,255,255,0.2); }
+  100% { border-color: rgba(255,255,255,0.9); }
+}
+@keyframes typewriter {
+  0% { width: 0ch; }
+  50% { width: 7ch; }
+  75% { width: 7ch; }
+  100% { width: 0ch; }
+}
+
+.quote-text {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+  text-shadow: 0 0 3px #fff, 0 0 6px #00ffff;
+  letter-spacing: 1px;
+  max-width: 80%;
+  line-height: 1.4;
+  margin-top: 20px;
+}
+
+
+.header-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 10px;
+  width: 100%;
+  z-index: 5;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.8s ease 0.6s, transform 0.8s ease 0.6s;
+}
+.header-icons img {
+  margin: 0 10px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.header-icons img:hover { transform: scale(1.1); }
+
+@media (max-width: 600px) {
+  .intro-text { font-size: 32px; }
+  .profile-gif { width: 100px; height: 100px; }
+  #enter-text { font-size: 32px; }
+}
+</style>
+</head>
+<body>
+
+
+<video id="bg-video" loop muted>
+  <source src="https://d1dzlizqgbwk1w.cloudfront.net/videos/2025/10/13/YbGCznME.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+<div id="bg-overlay"></div>
+
+
+<div id="enter-text">CLICK TO ENTER</div>
+
+<div class="header-icons">
+  <a href="https://discord.com/invite/AGxy2wZK7v" target="_blank" rel="noopener">
+    <img src="https://i.ibb.co/5n4McGj/download.png" alt="Discord Logo">
+  </a>
+  <a href="https://www.instagram.com/adrian._.madalin/?next=%2F" target="_blank" rel="noopener">
+    <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram Logo">
+  </a>
+  <a href="https://www.tiktok.com/@adrianoxytt" target="_blank" rel="noopener">
+    <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok Logo">
+  </a>
+</div>
+
+<div class="content">
+  <img class="profile-gif" src="https://64.media.tumblr.com/tumblr_lxre8ySHmm1qe5cn6o1_500.gif" alt="Profile GIF">
+  <div class="intro-text" aria-label="Adriano">Adriano</div>
+  <div class="quote-text">We all have something to hide. Some of us are just better at it.</div>
+</div>
+
+<script>
+const video = document.getElementById("bg-video");
+const overlay = document.getElementById("bg-overlay");
+const enterText = document.getElementById("enter-text");
+const content = document.querySelector(".content");
+const profileGif = document.querySelector(".profile-gif");
+const introText = document.querySelector(".intro-text");
+const quoteText = document.querySelector(".quote-text");
+const headerIcons = document.querySelector(".header-icons");
+
+function enterSite() {
+  enterText.style.display = "none";
+  video.style.filter = "blur(0px)";
+  overlay.style.opacity = "0";
+
+ 
+  video.muted = false;
+  video.play().catch(()=>{});
+
+
+  content.style.opacity = "1";
+  content.style.transform = "translateY(0)";
+  profileGif.style.transform = "scale(1)";
+  introText.style.opacity = "1";
+  introText.style.transform = "translateY(0)";
+  quoteText.style.opacity = "1";
+  quoteText.style.transform = "translateY(0)";
+  headerIcons.style.opacity = "1";
+  headerIcons.style.transform = "translateY(0)";
+}
+
+
+document.addEventListener("click", enterSite);
+document.addEventListener("keydown", enterSite);
+</script>
+</body>
+</html>
