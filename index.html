@@ -19,7 +19,6 @@
   transition: filter 1s ease;
 }
 
-
 #bg-overlay {
   position: fixed;
   top: 0;
@@ -32,7 +31,6 @@
   transition: opacity 1s ease;
 }
 
-
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -44,8 +42,10 @@ body {
   align-items: center;
   color: white;
   overflow-x: hidden;
-}
 
+  /* Custom cursor */
+  cursor: url("https://i.imgur.com/rVOr91R_d.webp?maxwidth=760&fidelity=grand"), auto;
+}
 
 #enter-text {
   font-family: 'Lobster', cursive;
@@ -65,20 +65,61 @@ body {
   20%,22%,24%,55% { opacity:0.3; }
 }
 
-
 .content {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 20px;
+  padding: 40px 25px;
   margin-top: 50px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
+/* Neon Glass Box - Lighter glow */
+/* Neon Glass Box - Bigger and more noticeable glow */
+.glass-box {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 580px; /* slightly bigger */
+  height: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 20px;
+  border: 1px solid rgba(0, 200, 255, 0.6);
+  box-shadow:
+    0 0 10px rgba(0, 200, 255, 0.6),
+    0 0 25px rgba(0, 200, 255, 0.5),
+    0 0 50px rgba(0, 200, 255, 0.4); /* stronger initial glow */
+  animation: neonPulse 2.5s ease-in-out infinite; /* slightly faster pulse */
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+@keyframes neonPulse {
+  0%,100%{
+    box-shadow:
+      0 0 10px rgba(0,200,255,0.7),
+      0 0 25px rgba(0,200,255,0.6),
+      0 0 50px rgba(0,200,255,0.5);
+    transform: translateX(-50%) scale(1);
+  }
+  50%{
+    box-shadow:
+      0 0 20px rgba(0,200,255,0.9),
+      0 0 40px rgba(0,200,255,0.8),
+      0 0 70px rgba(0,200,255,0.7);
+    transform: translateX(-50%) scale(1.02); /* subtle size pulse */
+  }
+}
+
+
+/* Profile GIF */
 .profile-gif {
   width: 130px;
   height: 130px;
@@ -88,51 +129,52 @@ body {
   box-shadow: 0 0 20px rgba(255,255,255,0.18);
   border: 2px solid rgba(255,255,255,0.12);
   background: linear-gradient(135deg,#111,#171717);
-  transform: scale(0);
-  transition: transform 0.8s ease;
+  transform: scale(0) translateY(20px);
+  opacity: 0;
+  transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
+/* Adriano Text - letters-only glow with pulsate */
 .intro-text {
   font-family: 'Lobster', cursive;
   font-size: 48px;
-  color: #fff;
-  text-shadow: 
-    0 0 4px #fff, 
-    0 0 8px #00ffff, 
-    0 0 12px #00ffff;
+  color: #00ffff;
   white-space: nowrap;
   overflow: hidden;
   display: inline-block;
   border-right: 2px solid rgba(255,255,255,0.9);
   box-sizing: content-box;
-  animation: typewriter 2s steps(7,end) infinite, blinkCursor 500ms step-end infinite;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s ease;
+
+  /* subtle glow only on letters */
+  text-shadow: 0 0 8px #00ffff;
+  animation: letterGlow 3s ease-in-out infinite;
 }
 
-@keyframes blinkCursor {
-  0% { border-color: rgba(255,255,255,0.9); }
-  50% { border-color: rgba(255,255,255,0.2); }
-  100% { border-color: rgba(255,255,255,0.9); }
-}
-@keyframes typewriter {
-  0% { width: 0ch; }
-  50% { width: 7ch; }
-  75% { width: 7ch; }
-  100% { width: 0ch; }
+@keyframes letterGlow {
+  0%, 100% { text-shadow: 0 0 6px #00ffff; }
+  50% { text-shadow: 0 0 12px #00ffff; }
 }
 
+/* Quote Text */
 .quote-text {
   font-family: 'Cinzel', serif;
   font-weight: 700;
   font-size: 18px;
   color: #fff;
-  text-shadow: 0 0 3px #fff, 0 0 6px #00ffff;
+  text-shadow: 0 0 3px #fff,0 0 6px #00ffff;
   letter-spacing: 1px;
   max-width: 80%;
   line-height: 1.4;
   margin-top: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s ease;
 }
 
-
+/* Social Icons */
 .header-icons {
   display: flex;
   justify-content: center;
@@ -143,7 +185,7 @@ body {
   z-index: 5;
   opacity: 0;
   transform: translateY(-20px);
-  transition: opacity 0.8s ease 0.6s, transform 0.8s ease 0.6s;
+  transition: all 1s ease;
 }
 .header-icons img {
   margin: 0 10px;
@@ -158,18 +200,16 @@ body {
   .intro-text { font-size: 32px; }
   .profile-gif { width: 100px; height: 100px; }
   #enter-text { font-size: 32px; }
+  .glass-box { max-width: 300px; }
 }
 </style>
 </head>
 <body>
 
-
 <video id="bg-video" loop muted>
   <source src="https://d1dzlizqgbwk1w.cloudfront.net/videos/2025/10/13/YbGCznME.mp4" type="video/mp4">
-  Your browser does not support HTML5 video.
 </video>
 <div id="bg-overlay"></div>
-
 
 <div id="enter-text">CLICK TO ENTER</div>
 
@@ -187,7 +227,7 @@ body {
 
 <div class="content">
   <img class="profile-gif" src="https://64.media.tumblr.com/tumblr_lxre8ySHmm1qe5cn6o1_500.gif" alt="Profile GIF">
-  <div class="intro-text" aria-label="Adriano">Adriano</div>
+  <div class="intro-text">Adriano</div>
   <div class="quote-text">We all have something to hide. Some of us are just better at it.</div>
 </div>
 
@@ -195,33 +235,76 @@ body {
 const video = document.getElementById("bg-video");
 const overlay = document.getElementById("bg-overlay");
 const enterText = document.getElementById("enter-text");
-const content = document.querySelector(".content");
 const profileGif = document.querySelector(".profile-gif");
 const introText = document.querySelector(".intro-text");
 const quoteText = document.querySelector(".quote-text");
 const headerIcons = document.querySelector(".header-icons");
+const content = document.querySelector(".content");
 
+// Ping-pong typewriter effect
+function pingPongTypewriter(textElem, text, speed=150, delay=2000) {
+  let forward = true;
+  let index = 0;
+
+  function type() {
+    textElem.textContent = text.substring(0, index);
+    if(forward) {
+      if(index < text.length) {
+        index++;
+        setTimeout(type, speed);
+      } else {
+        forward = false;
+        setTimeout(type, delay);
+      }
+    } else {
+      if(index > 0) {
+        index--;
+        setTimeout(type, speed);
+      } else {
+        forward = true;
+        setTimeout(type, delay);
+      }
+    }
+  }
+
+  type();
+}
+
+// Enter site animation
 function enterSite() {
   enterText.style.display = "none";
   video.style.filter = "blur(0px)";
   overlay.style.opacity = "0";
-
- 
   video.muted = false;
   video.play().catch(()=>{});
 
+  // add glass box dynamically
+  const glass = document.createElement("div");
+  glass.classList.add("glass-box");
+  content.prepend(glass);
+  setTimeout(()=>glass.style.opacity="1",50);
 
-  content.style.opacity = "1";
-  content.style.transform = "translateY(0)";
-  profileGif.style.transform = "scale(1)";
+  // animate profile
+  profileGif.style.opacity = "1";
+  profileGif.style.transform = "scale(1) translateY(0)";
+
+  // animate Adriano text with ping-pong typewriter
   introText.style.opacity = "1";
   introText.style.transform = "translateY(0)";
-  quoteText.style.opacity = "1";
-  quoteText.style.transform = "translateY(0)";
-  headerIcons.style.opacity = "1";
-  headerIcons.style.transform = "translateY(0)";
-}
+  pingPongTypewriter(introText, "Adriano", 150, 2000);
 
+  // animate quote after 2s
+  setTimeout(()=>{
+    quoteText.style.opacity = "1";
+    quoteText.style.transform = "translateY(0)";
+  },2000);
+
+  // animate social icons after 3s
+  setTimeout(()=>{
+    headerIcons.style.opacity = "1";
+    headerIcons.style.transform = "translateY(0)";
+  },3000);
+}
 
 document.addEventListener("click", enterSite);
 document.addEventListener("keydown", enterSite);
