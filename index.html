@@ -43,7 +43,7 @@ body {
   color: white;
   overflow-x: hidden;
 
-  /* Custom cursor */
+
   cursor: url("https://i.imgur.com/rVOr91R_d.webp?maxwidth=760&fidelity=grand"), auto;
 }
 
@@ -76,8 +76,7 @@ body {
   margin-top: 50px;
 }
 
-/* Neon Glass Box - Lighter glow */
-/* Neon Glass Box - Bigger and more noticeable glow */
+
 .glass-box {
   position: absolute;
   top: 0;
@@ -119,7 +118,7 @@ body {
 }
 
 
-/* Profile GIF */
+
 .profile-gif {
   width: 130px;
   height: 130px;
@@ -134,7 +133,7 @@ body {
   transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
-/* Adriano Text - letters-only glow with pulsate */
+
 .intro-text {
   font-family: 'Lobster', cursive;
   font-size: 48px;
@@ -148,7 +147,7 @@ body {
   transform: translateY(20px);
   transition: all 1s ease;
 
-  /* subtle glow only on letters */
+
   text-shadow: 0 0 8px #00ffff;
   animation: letterGlow 3s ease-in-out infinite;
 }
@@ -158,7 +157,7 @@ body {
   50% { text-shadow: 0 0 12px #00ffff; }
 }
 
-/* Quote Text */
+
 .quote-text {
   font-family: 'Cinzel', serif;
   font-weight: 700;
@@ -174,7 +173,7 @@ body {
   transition: all 1s ease;
 }
 
-/* Social Icons */
+
 .header-icons {
   display: flex;
   justify-content: center;
@@ -241,7 +240,7 @@ const quoteText = document.querySelector(".quote-text");
 const headerIcons = document.querySelector(".header-icons");
 const content = document.querySelector(".content");
 
-// Ping-pong typewriter effect
+
 function pingPongTypewriter(textElem, text, speed=150, delay=2000) {
   let forward = true;
   let index = 0;
@@ -270,7 +269,7 @@ function pingPongTypewriter(textElem, text, speed=150, delay=2000) {
   type();
 }
 
-// Enter site animation
+
 function enterSite() {
   enterText.style.display = "none";
   video.style.filter = "blur(0px)";
@@ -278,28 +277,28 @@ function enterSite() {
   video.muted = false;
   video.play().catch(()=>{});
 
-  // add glass box dynamically
+
   const glass = document.createElement("div");
   glass.classList.add("glass-box");
   content.prepend(glass);
   setTimeout(()=>glass.style.opacity="1",50);
 
-  // animate profile
+
   profileGif.style.opacity = "1";
   profileGif.style.transform = "scale(1) translateY(0)";
 
-  // animate Adriano text with ping-pong typewriter
+
   introText.style.opacity = "1";
   introText.style.transform = "translateY(0)";
   pingPongTypewriter(introText, "Adriano", 150, 2000);
 
-  // animate quote after 2s
+
   setTimeout(()=>{
     quoteText.style.opacity = "1";
     quoteText.style.transform = "translateY(0)";
   },2000);
 
-  // animate social icons after 3s
+
   setTimeout(()=>{
     headerIcons.style.opacity = "1";
     headerIcons.style.transform = "translateY(0)";
